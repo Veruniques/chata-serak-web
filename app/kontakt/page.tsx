@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import ForestSceneClient from "@/components/ForestSceneClient";
+import Hero360VideoClient from "@/components/Hero360VideoClient";
 import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 
 export const metadata = {
@@ -26,7 +26,7 @@ export default function Kontakt() {
         </div>
       </header>
 
-      {/* 3D PROSTŘEDÍ — lesní mýtina u chaty */}
+      {/* 360° PANORAMA — stejné jako na úvodní stránce */}
       <section className="bg-[var(--snow-50)] px-6 py-16">
         <div className="max-w-5xl mx-auto">
           <Reveal>
@@ -37,10 +37,12 @@ export default function Kontakt() {
               Kousek Šeráku už teď
             </h2>
             <p className="text-[var(--granite-600)] leading-relaxed mb-8 max-w-2xl">
-              360° prostředí lesní mýtiny kousek od chaty. Rozhlédněte se —
-              a pak přijeďte naživo.
+              360° panorama přímo z vrcholu Šeráku. Rozhlédněte se — a pak
+              přijeďte naživo.
             </p>
-            <ForestSceneClient />
+            <div className="relative h-[60vh] min-h-[420px] rounded-sm overflow-hidden border border-[var(--granite-300)]/40">
+              <Hero360VideoClient />
+            </div>
           </Reveal>
         </div>
       </section>

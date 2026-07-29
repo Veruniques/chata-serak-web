@@ -11,15 +11,6 @@ export type FormField = {
   placeholder?: string;
 };
 
-/**
- * DOČASNÉ ŘEŠENÍ: formulář nesestavuje žádný backend request, jen po
- * odeslání otevře e-mailového klienta s předvyplněnou zprávou (mailto:).
- * Funguje to bez serveru, ale není to spolehlivé sledování poptávek
- * (záleží na tom, že má návštěvník nastavený e-mailový klient v prohlížeči).
- *
- * Až budete mít e-mail/CRM řešení, nahraďte handleSubmit voláním na server
- * action nebo WP REST endpoint, který pošle e-mail / uloží poptávku.
- */
 export default function InquiryForm({
   fields,
   recipient,
@@ -32,25 +23,40 @@ export default function InquiryForm({
   submitLabel?: string;
 }) {
   const [values, setValues] = useState<Record<string, string>>({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
 
   const handleChange = (name: string, value: string) => {
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("sending");
 
-    const body = fields
-      .map((f) => `${f.label}: ${values[f.name] || "—"}`)
-      .join("\n");
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recipient,
+          subject: subjectPrefix,
+          fields: fields.map((f) => ({
+            name: f.name,
+            label: f.label,
+            value: values[f.name] || "",
+          })),
+        }),
+      });
 
-    const mailto = `mailto:${recipient}?subject=${encodeURIComponent(
-      subjectPrefix
-    )}&body=${encodeURIComponent(body)}`;
+      if (!res.ok) throw new Error("send failed");
 
-    window.location.href = mailto;
-    setSent(true);
+      setStatus("sent");
+      setValues({});
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -108,18 +114,31 @@ export default function InquiryForm({
         </div>
       ))}
 
-      <button type="submit" className="btn btn-primary btn-md w-full sm:w-auto justify-center">
-        {submitLabel}
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="btn btn-primary btn-md w-full sm:w-auto justify-center disabled:opacity-60"
+      >
+        {status === "sending" ? "Odesílám…" : submitLabel}
         <span aria-hidden="true" className="arrow">→</span>
       </button>
 
-      {sent && (
+      {status === "sent" && (
         <p className="text-sm text-[var(--granite-600)]">
-          Otevřel se váš e-mailový klient s předvyplněnou zprávou — jen ji
-          odešlete. Pokud se nic neotevřelo, napište nám rovnou na{" "}
-          <a href={`mailto:${recipient}`} className="text-[var(--amber-500)] underline">
+          Děkujeme, poptávka byla odeslána. Ozveme se vám co nejdřív.
+        </p>
+      )}
+
+      {status === "error" && (
+        <p className="text-sm text-red-700">
+          Poptávku se nepodařilo odeslat. Napište nám prosím přímo na{" "}
+          <a
+            href={`mailto:${recipient}`}
+            className="text-[var(--amber-500)] underline"
+          >
             {recipient}
-          </a>.
+          </a>
+          .
         </p>
       )}
     </form>

@@ -38,12 +38,10 @@ export const FALLBACK_PAGES: Record<string, FallbackPage> = {
 <h2>Šerák na historických fotografiích</h2>
 <p>Chata na dobových snímcích — od první dřevěné stavby přes kamennou chatu arcibiskupa Koppa až po podobu, kterou znáte dnes.</p>
 <div class="hist-gallery">
-  <figure><div class="hist-ph">[foto: Původní dřevěná chata, po 1888]</div><figcaption>Původní dřevěná chata turistického spolku</figcaption></figure>
-  <figure><div class="hist-ph">[foto: Stavba kamenné chaty, 1894]</div><figcaption>Stavba kamenné chaty, 1894</figcaption></figure>
-  <figure><div class="hist-ph">[foto: Chata na počátku 20. století]</div><figcaption>Chata na počátku 20. století</figcaption></figure>
-  <figure><div class="hist-ph">[foto: Hosté před chatou, meziválečné období]</div><figcaption>Hosté před chatou v meziválečném období</figcaption></figure>
-  <figure><div class="hist-ph">[foto: Zimní Šerák, historický snímek]</div><figcaption>Zima na Šeráku</figcaption></figure>
-  <figure><div class="hist-ph">[foto: Chata po rekonstrukci, 2018]</div><figcaption>Po citlivé rekonstrukci, 2018</figcaption></figure>
+  <figure><img src="/images/historie-1.jpg" alt="Šerák, historická pohlednice" loading="lazy" /></figure>
+  <figure><img src="/images/historie-2.jpg" alt="Interiér chaty, historická pohlednice" loading="lazy" /></figure>
+  <figure><img src="/images/historie-3.jpg" alt="Šerák, 1939" loading="lazy" /></figure>
+  <figure><img src="/images/historie-4.jpg" alt="Šerák, 50. léta" loading="lazy" /></figure>
 </div>
 
 <h2>Jak se k nám dostane zboží</h2>
@@ -56,6 +54,16 @@ export const FALLBACK_PAGES: Record<string, FallbackPage> = {
     html: `
 <h2>Horské speciality jako na dlani</h2>
 <p>Ochutnejte domácí jídla a naše tankové pivo Šerák v restauraci s výhledem na pohoří Hrubého Jeseníku. Skvěle se tu najíte a doplníte energii na další túru.</p>
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0">
+  <img src="/images/jidlo-gulas.jpg" alt="Hovězí guláš s karlovarským knedlíkem" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px" />
+  <img src="/images/jidlo-svickova.jpg" alt="Svíčková na smetaně" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px" />
+  <img src="/images/jidlo-boruvkove-knedliky.jpg" alt="Borůvkové knedlíky" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px" />
+  <img src="/images/jidlo-hermelin.jpg" alt="Smažený sýr s přílohou" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px" />
+  <img src="/images/jidlo-salat-feta.jpg" alt="Míchaný salát s fetou" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px" />
+  <img src="/images/jidlo-salat-pulled.jpg" alt="Salát s trhaným hovězím masem" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px" />
+</div>
+
 <h2>Tankové pivo Šerák — jediné svého druhu na vrcholu hory</h2>
 <p>Pivovar Holba kvůli nám nechal upravit dodávku do terénní úpravy, aby se k nám tankové pivo vůbec dostalo. Pivní trubky pravidelně čistíme a náš personál je proškolený přímo pivovarem na správné čepování — abyste na vrcholu dostali stejně poctivou dvanáctku jako dole v hospodě.</p>
 
@@ -102,7 +110,7 @@ export const FALLBACK_PAGES: Record<string, FallbackPage> = {
 
 <h2>Přišli jste v dešti? Usušte se u krbu</h2>
 <p>Pro příchozí v nepříznivém počasí máme řešení: pokud je krb zapálený, můžete si mokré věci pověsit na ramínka na sušák nad krbem a v klidu se u toho najíst. Do hor se prostě chodí za každého počasí — a my s tím počítáme.</p>
-<p><em>[foto: Sušení oblečení na ramínkách nad krbem]</em></p>
+<img src="/images/myslivna-krb.jpg" alt="Krb v Myslivně" loading="lazy" style="width:100%;max-width:600px;aspect-ratio:4/3;object-fit:cover;border-radius:4px;margin:16px 0" />
 
 <p>V sezóně vaříme i lehčí sezónní menu — ptejte se přímo v restauraci.</p>
 <p>Polévky podáváme od 10:00, hlavní jídla od 11:00. Akceptujeme stravenkové karty Pluxee. Platba útraty možná přes aplikaci Qerko se slevou 5 %.</p>

@@ -16,16 +16,16 @@ export const metadata = {
 };
 
 const SVATBY_PHOTOS = [
-  "Obřad s výhledem do hor",
-  "Hostina v salónku",
-  "Rustikální interiér",
-  "Terasa salónku",
+  { label: "Obřad s výhledem do hor", photo: "/images/svatba-obrad.jpg" },
+  { label: "Hostina v salónku", photo: "/images/svatba-salonek.jpg" },
+  { label: "Rustikální interiér", photo: "/images/svatba-interier.jpg" },
+  { label: "Terasa salónku", photo: "/images/svatba-terasa.jpg" },
 ];
 
 const LYZAKY_PHOTOS = [
-  "Sjezdovka Ramzová — horní lanovka",
-  "Myslivna s krbem",
-  "Lyžárna a sušení lyžáků",
+  { label: "Sjezdovka Ramzová — horní lanovka", photo: "/images/lyzak-sjezdovka.jpg" },
+  { label: "Stůl na stolní tenis", photo: "/images/lyzak-pingpong.jpg" },
+  { label: "Sušárna na lyžáky", photo: null },
 ];
 
 export default function SkupinyAAkce() {
@@ -64,14 +64,23 @@ export default function SkupinyAAkce() {
             </p>
 
             <div className="grid grid-cols-2 gap-3 mb-10">
-              {SVATBY_PHOTOS.map((label) => (
+              {SVATBY_PHOTOS.map((item) => (
                 <div
-                  key={label}
-                  className="photo-frame aspect-[4/3] bg-[var(--mist-100)] flex items-center justify-center p-3 text-center"
+                  key={item.label}
+                  className="photo-frame aspect-[4/3] overflow-hidden bg-[var(--mist-100)] flex items-center justify-center p-3 text-center"
                 >
-                  <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                    [foto: {label}]
-                  </span>
+                  {item.photo ? (
+                    <img
+                      src={item.photo}
+                      alt={item.label}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
+                      [foto: {item.label}]
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
@@ -134,14 +143,23 @@ export default function SkupinyAAkce() {
             </p>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-              {LYZAKY_PHOTOS.map((label) => (
+              {LYZAKY_PHOTOS.map((item) => (
                 <div
-                  key={label}
-                  className="photo-frame aspect-[4/3] bg-[var(--snow-50)] flex items-center justify-center p-3 text-center"
+                  key={item.label}
+                  className="photo-frame aspect-[4/3] overflow-hidden bg-[var(--snow-50)] flex items-center justify-center p-3 text-center"
                 >
-                  <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                    [foto: {label}]
-                  </span>
+                  {item.photo ? (
+                    <img
+                      src={item.photo}
+                      alt={item.label}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
+                      [foto: {item.label}]
+                    </span>
+                  )}
                 </div>
               ))}
             </div>

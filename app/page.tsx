@@ -32,6 +32,7 @@ const FACTS = [
 const FEATURES = [
   {
     photoLabel: "Ubytování na hřebeni",
+    photo: "/images/karta-ubytovani.jpg",
     icon: BedDouble,
     title: "Ubytování na hřebeni",
     text: "Útulné 2–8lůžkové pokoje po citlivé rekonstrukci.",
@@ -40,6 +41,7 @@ const FEATURES = [
   },
   {
     photoLabel: "Restaurace",
+    photo: "/images/karta-restaurace.jpg",
     icon: UtensilsCrossed,
     title: "Restaurace",
     text: "Domácí kuchyně a tankové pivo Šerák přímo na vrcholu hory.",
@@ -48,6 +50,7 @@ const FEATURES = [
   },
   {
     photoLabel: "Svatby & firemní akce",
+    photo: "/images/karta-svatby.jpg",
     icon: Heart,
     title: "Svatby & firemní akce",
     text: "Obřad i hostina s panoramatem Jeseníků, ubytování pro hosty přímo na místě.",
@@ -56,12 +59,26 @@ const FEATURES = [
   },
   {
     photoLabel: "Základní a střední školy",
+    photo: "/images/karta-skoly.jpg",
     icon: GraduationCap,
     title: "Základní a střední školy",
     text: "Školní výlety, pobytové kurzy i zimní lyžařské pobyty tříd — se speciální poptávkou.",
     cta: "Poptat pro školu",
     href: "/skupiny-a-akce#skoly",
   },
+];
+
+const RESTAURANT_PHOTOS = [
+  { label: "Restaurace", photo: "/images/karta-restaurace.jpg" },
+  { label: "Tankové pivo", photo: "/images/pivo-tanky.jpg" },
+  { label: "Výhled z okna", photo: "/images/terasa-vyhled.jpg" },
+  { label: "Interiér", photo: "/images/restaurace-interier.jpg" },
+];
+
+const AKCE_PHOTOS = [
+  { label: "Promítání", photo: "/images/akce-1.jpg" },
+  { label: "Přednáška", photo: "/images/akce-2.jpg" },
+  { label: "Kurz", photo: "/images/akce-3.jpg" },
 ];
 
 const MENU_HIGHLIGHTS = [
@@ -196,11 +213,20 @@ export default function Home() {
               <Reveal key={f.title} delay={i * 0.08}>
                 <Link href={f.href} className="group lift flex flex-col h-full">
                   <div className="photo-frame aspect-[4/3] mb-5">
-                    <div className="w-full h-full bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center">
-                      <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                        [foto: {f.photoLabel}]
-                      </span>
-                    </div>
+                    {f.photo ? (
+                      <img
+                        src={f.photo}
+                        alt={f.photoLabel}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center">
+                        <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
+                          [foto: {f.photoLabel}]
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <f.icon
                     className="text-[var(--amber-500)] mb-3"
@@ -264,20 +290,27 @@ export default function Home() {
             <ParallaxY offset={26}>
               <Reveal direction="right" delay={0.1}>
                 <div className="grid grid-cols-2 gap-3 mb-7">
-                  {["Restaurace", "Tankové pivo", "Výhled z okna", "Interiér"].map(
-                    (label, i) => (
-                      <div
-                        key={label}
-                        className={`photo-frame aspect-[4/3] ${i % 2 === 1 ? "translate-y-4" : ""}`}
-                      >
+                  {RESTAURANT_PHOTOS.map((item, i) => (
+                    <div
+                      key={item.label}
+                      className={`photo-frame aspect-[4/3] ${i % 2 === 1 ? "translate-y-4" : ""}`}
+                    >
+                      {item.photo ? (
+                        <img
+                          src={item.photo}
+                          alt={item.label}
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
                         <div className="w-full h-full bg-[var(--spruce-800)] flex items-center justify-center">
                           <span className="font-mono-label text-[10px] text-[var(--granite-300)]">
-                            [foto: {label}]
+                            [foto: {item.label}]
                           </span>
                         </div>
-                      </div>
-                    )
-                  )}
+                      )}
+                    </div>
+                  ))}
                 </div>
               </Reveal>
             </ParallaxY>
@@ -320,16 +353,25 @@ export default function Home() {
           <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center gap-10">
             <ParallaxY offset={14} className="shrink-0 w-full sm:w-96">
               <div className="grid grid-cols-3 gap-3">
-                {["Promítání", "Přednáška", "Kurz"].map((label, i) => (
+                {AKCE_PHOTOS.map((item, i) => (
                   <div
-                    key={label}
+                    key={item.label}
                     className={`photo-frame aspect-square ${i === 1 ? "-translate-y-3" : ""}`}
                   >
-                    <div className="w-full h-full bg-[var(--mist-100)] flex items-center justify-center">
-                      <span className="font-mono-label text-[10px] text-[var(--granite-600)] text-center px-1">
-                        [foto: {label}]
-                      </span>
-                    </div>
+                    {item.photo ? (
+                      <img
+                        src={item.photo}
+                        alt={item.label}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-[var(--mist-100)] flex items-center justify-center">
+                        <span className="font-mono-label text-[10px] text-[var(--granite-600)] text-center px-1">
+                          [foto: {item.label}]
+                        </span>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

@@ -28,7 +28,23 @@ const QUICK_NAV = [
   { href: "#doprava", label: "Jak se k nám dostat" },
 ];
 
-const ROOM_PHOTOS = ["Pokoj — dvoulůžkový", "Pokoj — rodinný", "Společenská místnost", "Chodba a schodiště"];
+const ROOM_PHOTOS = [
+  { label: "Pokoj — dvoulůžkový", photo: "/images/pokoj-1.jpg" },
+  { label: "Pokoj — rodinný", photo: "/images/pokoj-2.jpg" },
+  { label: "Společenská místnost", photo: "/images/pokoj-3.jpg" },
+  { label: "Koupelna", photo: "/images/pokoj-4.jpg" },
+];
+
+const STRAVOVANI_PHOTOS = [
+  { label: "Snídaně", photo: "/images/snidane-1.jpg" },
+  { label: "Večeře", photo: "/images/restaurace-interier.jpg" },
+];
+
+const SAUNA_PHOTOS = [
+  { label: "Sauna — interiér", photo: "/images/sauna-1.jpg" },
+  { label: "Výhled ze sauny", photo: "/images/sauna-2.jpg" },
+  { label: "Odpočinková zóna", photo: "/images/sauna-3.jpg" },
+];
 
 export default function Ubytovani() {
   return (
@@ -80,20 +96,23 @@ export default function Ubytovani() {
               Pokoje & galerie
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-              {ROOM_PHOTOS.map((label) => (
+              {ROOM_PHOTOS.map((item) => (
                 <div
-                  key={label}
-                  className="aspect-square rounded-sm bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center p-3 text-center"
+                  key={item.label}
+                  className="aspect-square rounded-sm overflow-hidden bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center p-3 text-center"
                 >
-                  <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                    [foto: {label}]
-                  </span>
+                  <img
+                    src={item.photo}
+                    alt={item.label}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               ))}
             </div>
             <p className="text-[var(--granite-600)]">
               Pokoje jsou 2–8lůžkové, z velké části s vlastním sociálním
-              zařízením. Až budete mít video z chaty, vložíme ho hned sem.
+              zařízením.
             </p>
           </Reveal>
         </div>
@@ -120,10 +139,13 @@ export default function Ubytovani() {
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="photo-frame aspect-[4/3] bg-[var(--mist-100)] flex items-center justify-center p-3 text-center">
-              <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                [foto: Myslivna — krb se sušákem na prádlo]
-              </span>
+            <div className="photo-frame aspect-[4/3] overflow-hidden bg-[var(--mist-100)]">
+              <img
+                src="/images/myslivna-krb.jpg"
+                alt="Myslivna — krb se sušákem na prádlo"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
           </Reveal>
         </div>
@@ -184,14 +206,17 @@ export default function Ubytovani() {
                     nabídky. Po domluvě vegetariánská nebo bezlepková strava.
                   </p>
                   <div className="grid grid-cols-2 gap-2 mt-3">
-                    {["Snídaně", "Večeře"].map((label) => (
+                    {STRAVOVANI_PHOTOS.map((item) => (
                       <div
-                        key={label}
-                        className="aspect-[4/3] rounded-sm bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center"
+                        key={item.label}
+                        className="aspect-[4/3] rounded-sm overflow-hidden bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center"
                       >
-                        <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                          [foto: {label}]
-                        </span>
+                        <img
+                          src={item.photo}
+                          alt={item.label}
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     ))}
                   </div>
@@ -254,14 +279,17 @@ export default function Ubytovani() {
               </a>.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {["Sauna — interiér", "Výhled ze sauny", "Odpočinková zóna"].map((label) => (
+              {SAUNA_PHOTOS.map((item) => (
                 <div
-                  key={label}
-                  className="aspect-[4/3] rounded-sm bg-[var(--spruce-800)] flex items-center justify-center"
+                  key={item.label}
+                  className="aspect-[4/3] rounded-sm overflow-hidden bg-[var(--spruce-800)] flex items-center justify-center"
                 >
-                  <span className="font-mono-label text-[10px] text-[var(--granite-300)]">
-                    [foto: {label}]
-                  </span>
+                  <img
+                    src={item.photo}
+                    alt={item.label}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               ))}
             </div>
@@ -307,10 +335,13 @@ export default function Ubytovani() {
                       Bonera
                     </a>.
                   </p>
-                  <div className="photo-frame aspect-[4/3] mt-3 bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center">
-                    <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                      [foto: Lanovka na Šerák]
-                    </span>
+                  <div className="photo-frame aspect-[4/3] mt-3 overflow-hidden bg-[var(--snow-50)] border border-[var(--granite-300)]/40">
+                    <img
+                      src="/images/doprava-lanovka.jpg"
+                      alt="Lanovka na Šerák"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>
@@ -329,10 +360,13 @@ export default function Ubytovani() {
                     z Lipové-lázně, z Filipovic na druhé straně kopce,
                     i z Jeseníku.
                   </p>
-                  <div className="photo-frame aspect-[4/3] mt-3 bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center">
-                    <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                      [foto: Pěší cesta na Šerák]
-                    </span>
+                  <div className="photo-frame aspect-[4/3] mt-3 overflow-hidden bg-[var(--snow-50)] border border-[var(--granite-300)]/40">
+                    <img
+                      src="/images/doprava-pesky.jpg"
+                      alt="Pěší cesta na Šerák"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>
@@ -351,10 +385,13 @@ export default function Ubytovani() {
                     úsek Čerňava–Šerák příliš prudký na kolo — dolů na
                     Čerňavu jen pro zkušené terénní cyklisty.
                   </p>
-                  <div className="photo-frame aspect-[4/3] mt-3 bg-[var(--snow-50)] border border-[var(--granite-300)]/40 flex items-center justify-center">
-                    <span className="font-mono-label text-[10px] text-[var(--granite-600)]">
-                      [foto: Na kole na Šerák]
-                    </span>
+                  <div className="photo-frame aspect-[4/3] mt-3 overflow-hidden bg-[var(--snow-50)] border border-[var(--granite-300)]/40">
+                    <img
+                      src="/images/doprava-kolo.jpg"
+                      alt="Na kole na Šerák"
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>
