@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: NextRequest) {
   try {
     const { recipient, subject, fields } = await req.json();
@@ -21,6 +19,8 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const bodyHtml = fields
       .map(
