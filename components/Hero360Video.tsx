@@ -20,6 +20,12 @@ import * as THREE from "three";
  * fotku /images/hero.jpg (řeší Hero360VideoClient).
  */
 
+// Počáteční natočení panoramatu — kladná hodnota posune výchozí
+// pohled DOLEVA (o tolik stupňů). Pokud by se otočilo na opačnou
+// stranu, stačí otočit znaménko na záporné.
+const INITIAL_ROTATION_DEG = 30;
+const INITIAL_ROTATION_RAD = (INITIAL_ROTATION_DEG * Math.PI) / 180;
+
 function PanoVideoSphere({ src }: { src: string }) {
   const texture = useVideoTexture(src, {
     muted: true,
@@ -31,14 +37,16 @@ function PanoVideoSphere({ src }: { src: string }) {
   texture.colorSpace = THREE.SRGBColorSpace;
 
   return (
-    <mesh scale={[-1, 1, 1]}>
-      <sphereGeometry args={[50, 64, 48]} />
-      <meshBasicMaterial
-        map={texture}
-        side={THREE.BackSide}
-        toneMapped={false}
-      />
-    </mesh>
+    <group rotation={[0, INITIAL_ROTATION_RAD, 0]}>
+      <mesh scale={[-1, 1, 1]}>
+        <sphereGeometry args={[50, 64, 48]} />
+        <meshBasicMaterial
+          map={texture}
+          side={THREE.BackSide}
+          toneMapped={false}
+        />
+      </mesh>
+    </group>
   );
 }
 
