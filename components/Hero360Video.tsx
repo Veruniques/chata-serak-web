@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useVideoTexture } from "@react-three/drei";
 import * as THREE from "three";
@@ -18,6 +18,11 @@ import * as THREE from "three";
  *
  * Pokud video chybí nebo se nenačte, hero tiše spadne na statickou
  * fotku /images/hero.jpg (řeší Hero360VideoClient).
+ *
+ * Video se stahuje jedním fetch requestem do paměti (blob) a teprve
+ * ten se přehrává — Vercelí edge dokázal nespolehlivě (503) odpovídat
+ * na drobné "range" requesty, které si běžný <video> tag posílá sám
+ * při bufferování/přehrávání. Jeden velký fetch tenhle problém obchází.
  */
 
 // Počáteční natočení panoramatu — kladná hodnota posune výchozí
@@ -26,13 +31,12 @@ import * as THREE from "three";
 const INITIAL_ROTATION_DEG = 30;
 const INITIAL_ROTATION_RAD = (INITIAL_ROTATION_DEG * Math.PI) / 180;
 
-function PanoVideoSphere({ src }: { src: string }) {
+function PanoVideoSphereInner({ src }: { src: string }) {
   const texture = useVideoTexture(src, {
     muted: true,
     loop: true,
     start: true,
     playsInline: true,
-    crossOrigin: "anonymous",
   });
   texture.colorSpace = THREE.SRGBColorSpace;
 
@@ -48,6 +52,38 @@ function PanoVideoSphere({ src }: { src: string }) {
       </mesh>
     </group>
   );
+}
+
+function PanoVideoSphere({ src }: { src: string }) {
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    let objectUrl: string | null = null;
+
+    fetch(src, { cache: "force-cache" })
+      .then((res) => {
+        if (!res.ok) throw new Error(`Video fetch failed: ${res.status}`);
+        return res.blob();
+      })
+      .then((blob) => {
+        if (cancelled) return;
+        objectUrl = URL.createObjectURL(blob);
+        setBlobUrl(objectUrl);
+      })
+      .catch(() => {
+        // Necháváme prázdné — hero zůstane na statické fotce (poster).
+      });
+
+    return () => {
+      cancelled = true;
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+    };
+  }, [src]);
+
+  if (!blobUrl) return null;
+
+  return <PanoVideoSphereInner src={blobUrl} />;
 }
 
 export default function Hero360Video({
