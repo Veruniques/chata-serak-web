@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
       .join("");
 
     const replyTo = fields.find(
-      (f: { name?: string; value: string }) =>
+      (f: { name?: string; label?: string; value: string }) =>
         f.name === "email" || f.label?.toLowerCase().includes("e-mail")
     )?.value;
 
