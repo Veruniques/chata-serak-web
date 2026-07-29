@@ -28,7 +28,8 @@ import * as THREE from "three";
 // Počáteční natočení panoramatu — kladná hodnota posune výchozí
 // pohled DOLEVA (o tolik stupňů). Pokud by se otočilo na opačnou
 // stranu, stačí otočit znaménko na záporné.
-const INITIAL_ROTATION_DEG = 30;
+// DOČASNĚ nastaveno na 90° kvůli testu, aby byl posun jasně vidět.
+const INITIAL_ROTATION_DEG = 90;
 const INITIAL_ROTATION_RAD = (INITIAL_ROTATION_DEG * Math.PI) / 180;
 
 function PanoVideoSphereInner({ src }: { src: string }) {
