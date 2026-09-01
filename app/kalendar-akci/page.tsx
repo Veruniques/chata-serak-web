@@ -6,17 +6,62 @@ export const metadata = {
   description: "Promítání, přednášky a kurzy, které pořádáme na Chatě na Šeráku.",
 };
 
-/**
- * Zatím bez konkrétních termínů — sekce zobrazuje "Připravujeme".
- * Až budou termíny known, doplňte je sem (nebo přesuňte do WP jako
- * vlastní post type "Události" a načítejte přes lib/wp.ts).
- */
-const EVENTS: {
-  date: string;
-  title: string;
-  type: string;
-  description: string;
-}[] = [];
+const EVENTS = [
+  {
+    date: "2026-09-11",
+    title: "Přednáška Lukáše Abta",
+    type: "Přednáška",
+    description: "Večerní přednáška v restauraci.",
+  },
+  {
+    date: "2026-09-12",
+    title: "Stezky z lásky — dobrovolnická akce, oprava Koňské stezky",
+    type: "Dobrovolnická akce",
+    description: "Pomozte nám s opravou Koňské stezky.",
+  },
+  {
+    date: "2026-09-19",
+    title: "Zabijačkový víkend",
+    type: "Gastro víkend",
+    description: "Tradiční zabijačkové hody, 19.–20. 9. 2026.",
+  },
+  {
+    date: "2026-10-02",
+    title: "Michal Juříčka — koncert",
+    type: "Koncert",
+    description: "Páteční koncert v restauraci.",
+  },
+  {
+    date: "2026-10-03",
+    title: "Závod Vrchovka na Šerák + zakončení sezony párty",
+    type: "Závod & párty",
+    description: "Sobotní běžecký závod na Šerák, večer zakončení sezony.",
+  },
+  {
+    date: "2026-10-09",
+    title: "Laco Déczi — koncert",
+    type: "Koncert",
+    description: "Sobotní koncert v restauraci.",
+  },
+  {
+    date: "2026-10-24",
+    title: "Dina Štěrbová",
+    type: "Přednáška",
+    description: "Sobotní přednáška v restauraci.",
+  },
+  {
+    date: "2026-11-06",
+    title: "Los Muertos — dušičková párty",
+    type: "Párty",
+    description: "Sobotní tematická párty.",
+  },
+  {
+    date: "2026-11-16",
+    title: "Snow film festival",
+    type: "Promítání",
+    description: "Pondělní filmový večer s horskou tematikou.",
+  },
+];
 
 function formatDate(iso: string) {
   const d = new Date(iso);
@@ -52,7 +97,7 @@ export default function KalendarAkci() {
         <div className="max-w-3xl mx-auto">
           {upcoming.length === 0 ? (
             <Reveal>
-              <p className="text-[var(--granite-600)] text-lg">
+              <p className="text-[var(--granite-600)]">
                 Připravujeme.
               </p>
             </Reveal>
