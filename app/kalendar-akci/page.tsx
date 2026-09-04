@@ -11,7 +11,7 @@ const EVENTS = [
     date: "2026-09-11",
     title: "Přednáška Lukáše Abta",
     type: "Přednáška",
-    description: "Večerní přednáška v restauraci.",
+    description: "Večerní přednáška.",
   },
   {
     date: "2026-09-12",
@@ -29,25 +29,25 @@ const EVENTS = [
     date: "2026-10-02",
     title: "Michal Juříčka — koncert",
     type: "Koncert",
-    description: "Páteční koncert v restauraci.",
+    description: "Páteční živá hudba v restauraci.",
   },
   {
     date: "2026-10-03",
-    title: "Závod Vrchovka na Šerák + zakončení sezony párty",
+    title: "Závod Vrchovka na Šerák",
     type: "Závod & párty",
-    description: "Sobotní běžecký závod na Šerák, večer zakončení sezony.",
+    description: "Sobotní vrchovka na Šerák.",
   },
   {
     date: "2026-10-09",
     title: "Laco Déczi — koncert",
     type: "Koncert",
-    description: "Sobotní koncert v restauraci.",
+    description: "Páteční koncert na hřebeni.",
   },
   {
-    date: "2026-10-24",
+    date: "2026-10-17",
     title: "Dina Štěrbová",
     type: "Přednáška",
-    description: "Sobotní přednáška v restauraci.",
+    description: "Sobotní přednáška o horolezení a 8000m.n.m..",
   },
   {
     date: "2026-11-06",
@@ -59,7 +59,7 @@ const EVENTS = [
     date: "2026-11-16",
     title: "Snow film festival",
     type: "Promítání",
-    description: "Pondělní filmový večer s horskou tematikou.",
+    description: "Filmový večer s horskou tematikou.",
   },
 ];
 
