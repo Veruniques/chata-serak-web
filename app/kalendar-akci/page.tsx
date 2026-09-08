@@ -3,7 +3,7 @@ import { Film } from "lucide-react";
 
 export const metadata = {
   title: "Kalendář akcí — Chata na Šeráku",
-  description: "Promítání, přednášky a kurzy, které pořádáme na Chatě na Šeráku.",
+  description: "Promítání, přednášky a kurzy, které pořádáme na Chatě na Šeráku. Vstupenky na info@chatanaseraku.cz",
 };
 
 const EVENTS = [
@@ -36,7 +36,7 @@ const EVENTS = [
     date: "2026-10-09",
     title: "Laco Déczi & New York Celula — koncert",
     type: "Koncert",
-    description: "19:00 začátek koncertu",
+    description: "Vstupné 850,- na info@chatanaseraku.cz. Začátek koncertu v 19:00",
   },
   {
     date: "2026-10-17",
