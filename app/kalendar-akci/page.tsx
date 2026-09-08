@@ -31,17 +31,12 @@ const EVENTS = [
     type: "Koncert",
     description: "Páteční živá hudba v restauraci.",
   },
-  {
-    date: "2026-10-03",
-    title: "Závod Vrchovka na Šerák",
-    type: "Závod & párty",
-    description: "Sobotní vrchovka na Šerák.",
-  },
+
   {
     date: "2026-10-09",
-    title: "Laco Déczi — koncert",
+    title: "Laco Déczi & New York Celula — koncert",
     type: "Koncert",
-    description: "Páteční koncert na hřebeni.",
+    description: "19:00 začátek koncertu",
   },
   {
     date: "2026-10-17",
