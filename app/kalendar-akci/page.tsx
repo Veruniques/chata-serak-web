@@ -40,7 +40,7 @@ const EVENTS = [
   },
   {
     date: "2026-10-17",
-    title: "Dina Štěrbová",
+    title: "Dina Štěrbová - přednáška",
     type: "Přednáška",
     description: "Sobotní přednáška o horolezení a 8000m.n.m..",
   },
