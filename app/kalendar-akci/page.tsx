@@ -36,7 +36,7 @@ const EVENTS = [
     date: "2026-10-09",
     title: "Laco Déczi & New York Celula — koncert",
     type: "Koncert",
-    description: "Vstupné 850,- na info@chatanaseraku.cz. Začátek koncertu v 19:00",
+    description: "Vstupné 850,-. Rezervace na info@chatanaseraku.cz. Začátek koncertu v 19:00",
   },
   {
     date: "2026-10-17",
@@ -52,7 +52,7 @@ const EVENTS = [
   },
   {
     date: "2026-11-16",
-    title: "Snow film festival",
+    title: "Snow film festival - promítání",
     type: "Promítání",
     description: "Filmový večer s horskou tematikou.",
   },
