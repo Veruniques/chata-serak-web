@@ -51,7 +51,7 @@ const EVENTS = [
     description: "Sobotní tematická párty.",
   },
   {
-    date: "2026-11-16",
+    date: "2026-11-17",
     title: "Snow film festival - promítání",
     type: "Promítání",
     description: "Filmový večer s horskou tematikou.",
