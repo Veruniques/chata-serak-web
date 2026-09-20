@@ -39,7 +39,7 @@ const EVENTS = [
     description: "Vstupné 850,-. Rezervace na info@chatanaseraku.cz. Začátek koncertu v 19:00",
   },
   {
-    date: "2026-10-17",
+    date: "2026-10-24",
     title: "Dina Štěrbová - přednáška",
     type: "Přednáška",
     description: "Sobotní přednáška o horolezení a 8000m.n.m..",
@@ -51,7 +51,7 @@ const EVENTS = [
     description: "Sobotní tematická párty.",
   },
   {
-    date: "2026-11-17",
+    date: "2026-11-16",
     title: "Snow film festival - promítání",
     type: "Promítání",
     description: "Filmový večer s horskou tematikou.",
