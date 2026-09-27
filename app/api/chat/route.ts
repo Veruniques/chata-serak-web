@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         reply:
-          "Chat asistent zatím není nastavený (chybí API klíč na serveru). Napište nám prosím přímo na info@chatanaseraku.cz.",
+          "Chat asistent zatím není nastavený. Napište nám prosím přímo na info@chatanaseraku.cz.",
       },
       { status: 200 }
     );
