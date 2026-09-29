@@ -19,6 +19,11 @@
   position: relative;
   z-index: 5;
   margin-top: var(--head-gap, 18px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
 
 .label {
   display: flex;
