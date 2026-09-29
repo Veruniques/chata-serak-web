@@ -8,6 +8,7 @@ import Counter from "@/components/Counter";
 import { HeroStagger, HeroItem } from "@/components/HeroStagger";
 import Marquee from "@/components/Marquee";
 import TrailPath from "@/components/TrailPath";
+import HeroEventTickets from "@/components/HeroEventTickets";
 import {
   BedDouble,
   UtensilsCrossed,
@@ -122,9 +123,23 @@ export default function Home() {
           </svg>
         </div>
 
+        {/* Vstupenky na akce — od 1280 px vlevo nad nadpisem, přes hranu mezi panoramatem a obsahem */}
+        <div className="hidden xl:block absolute inset-x-0 top-[60%] z-20 pointer-events-none">
+          <div className="max-w-6xl mx-auto px-6 flex justify-start">
+            <div className="pointer-events-auto -translate-y-[255px]">
+              <HeroEventTickets className="[--tilt:-20deg] [--stack-gap:80px]" />
+            </div>
+          </div>
+        </div>
+
         {/* Obsah — spodní část hera */}
         <div className="relative flex-1 flex items-center py-10 md:py-0">
           <div className="max-w-6xl mx-auto w-full px-6 grid gap-8 md:grid-cols-[1.35fr_auto] md:items-center">
+            {/* Vstupenky — na mobilu pod fakty */}
+            <div className="order-last md:hidden">
+              <HeroEventTickets />
+            </div>
+
             <HeroStagger>
               <HeroItem>
                 <span className="inline-block font-mono-label text-[10px] md:text-xs tracking-[0.16em] text-[var(--spruce-950)] bg-[var(--amber-300)] px-3 py-1 rounded-full mb-4">
