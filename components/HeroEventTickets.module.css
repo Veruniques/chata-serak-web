@@ -1,0 +1,225 @@
+/* Vstupenky na akce — levá strana hera. Barvy a písma z globals.css. */
+
+.wrap {
+  --paper: var(--snow-50);
+  --ink: var(--spruce-950);
+  --amber: var(--amber-500);
+  --muted: var(--granite-600);
+  --notch: 10px;
+  --stub: 88px;
+
+  width: 360px;
+  max-width: 100%;
+  font-family: var(--font-body);
+  color: var(--snow-50);
+  animation: enter 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.head {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--snow-50);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+.label::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber-300);
+  box-shadow: 0 0 0 4px var(--amber-glow);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+/* ---------- balíček ---------- */
+.stack {
+  position: relative;
+  height: 150px;
+  margin-top: var(--stack-gap, 30px); /* místo pro vstupenky vykukující zezadu */
+}
+
+.ticket {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  text-decoration: none;
+  color: var(--ink);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    var(--paper);
+  border-radius: 6px;
+  /* půlkruhové výřezy v místě perforace */
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+          mask:
+    radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--notch) at calc(100% - var(--stub)) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.5));
+  transform-origin: 30% 80%;
+  transition:
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.5s ease;
+  will-change: transform;
+}
+
+.ticket[data-pos="0"] { z-index: 3; transform: rotate(calc(3deg + var(--tilt, 0deg))); }
+.ticket[data-pos="1"] { z-index: 2; transform: translate(14px, -12px) rotate(calc(1deg + var(--tilt, 0deg))) scale(0.965); opacity: 0.8; pointer-events: none; }
+.ticket[data-pos="2"] { z-index: 1; transform: translate(26px, -22px) rotate(calc(-1deg + var(--tilt, 0deg))) scale(0.93); opacity: 0.55; pointer-events: none; }
+.ticket[data-pos="hidden"] { z-index: 0; transform: translate(34px, -30px) rotate(calc(-3deg + var(--tilt, 0deg))) scale(0.9); opacity: 0; pointer-events: none; }
+
+.ticket[data-pos="0"]:hover { transform: rotate(calc(1.5deg + var(--tilt, 0deg))) translateY(-4px); }
+.ticket:focus-visible { outline: 2px solid var(--amber-300); outline-offset: 4px; }
+
+/* ---------- hlavní část ---------- */
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 12px 18px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cat {
+  padding: 3px 8px 2px;
+  border-radius: 99px;
+  background: var(--amber-300);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.title {
+  margin: 9px 0 0;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.meta {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.foot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 7px;
+  border-top: 1px solid rgba(14, 23, 18, 0.12);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cta { color: var(--ink); font-weight: 500; transition: color 0.2s; }
+.ticket:hover .cta { color: var(--amber); }
+
+/* ---------- ústřižek ---------- */
+.stub {
+  width: var(--stub);
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-left: 2px dashed rgba(14, 23, 18, 0.22);
+  background: rgba(201, 138, 62, 0.12);
+}
+.day {
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+.mon {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.wd { font-size: 11px; color: var(--muted); }
+
+/* ---------- ovládání ---------- */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--mist-100);
+}
+.btn {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(247, 246, 242, 0.3);
+  border-radius: 50%;
+  background: rgba(14, 23, 18, 0.55);
+  backdrop-filter: blur(6px);
+  color: var(--snow-50);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn:hover { background: rgba(14, 23, 18, 0.8); border-color: var(--snow-50); }
+.count { font-variant-numeric: tabular-nums; letter-spacing: 0.1em; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
+
+@keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(201, 138, 62, 0); } }
+@keyframes enter { from { opacity: 0; transform: translateY(12px); } }
+
+@media (max-width: 420px) {
+  .wrap { --stub: 76px; }
+  .ticket[data-pos="1"] { transform: translate(6px, -12px) rotate(calc(1deg + var(--tilt, 0deg))) scale(0.965); }
+  .ticket[data-pos="2"] { transform: translate(10px, -22px) rotate(calc(-1deg + var(--tilt, 0deg))) scale(0.93); }
+  .title { font-size: 19px; }
+  .day { font-size: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrap { animation: none; }
+  .ticket { transition: opacity 0.3s ease; }
+  .label::before { animation: none; }
+}
