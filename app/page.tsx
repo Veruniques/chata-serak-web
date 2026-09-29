@@ -123,15 +123,6 @@ export default function Home() {
           </svg>
         </div>
 
-        {/* Vstupenky na akce — od 1280 px vlevo nad nadpisem, přes hranu mezi panoramatem a obsahem */}
-        <div className="hidden xl:block absolute inset-x-0 top-[60%] z-20 pointer-events-none">
-          <div className="max-w-6xl mx-auto px-6 flex justify-start">
-            <div className="pointer-events-auto -translate-y-[255px]">
-              <HeroEventTickets className="[--tilt:-20deg] [--stack-gap:80px]" />
-            </div>
-          </div>
-        </div>
-
         {/* Obsah — spodní část hera */}
         <div className="relative flex-1 flex items-center py-10 md:py-0">
           <div className="max-w-6xl mx-auto w-full px-6 grid gap-8 md:grid-cols-[1.35fr_auto] md:items-center">
@@ -140,6 +131,12 @@ export default function Home() {
               <HeroEventTickets />
             </div>
 
+            <div className="relative">
+            {/* Vstupenky na akce — od 1280 px těsně nad štítkem 1351 m n. m., přesahují do panoramatu */}
+            <div className="hidden xl:block absolute bottom-full left-0 mb-5 z-20">
+              <HeroEventTickets className="[--tilt:-20deg] [--head-gap:40px]" />
+            </div>
+            
             <HeroStagger>
               <HeroItem>
                 <span className="inline-block font-mono-label text-[10px] md:text-xs tracking-[0.16em] text-[var(--spruce-950)] bg-[var(--amber-300)] px-3 py-1 rounded-full mb-4">
@@ -166,6 +163,7 @@ export default function Home() {
                 </Link>
               </HeroItem>
             </HeroStagger>
+                </div>
 
             {/* Rychlá fakta — kompaktní sloupec */}
             <Reveal direction="right" delay={0.5}>
