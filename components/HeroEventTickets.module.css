@@ -18,11 +18,7 @@
 .head {
   position: relative;
   z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
+  margin-top: var(--head-gap, 18px);
 
 .label {
   display: flex;
