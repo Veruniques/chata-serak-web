@@ -48,10 +48,10 @@ export const EVENTS: ChataEvent[] = [
     date: "2026-10-09",
     title: "Laco Déczi & New York Celula — koncert",
     type: "Koncert",
-    description: "Vstupné 850,-. Rezervace na info@chatanaseraku.cz. Začátek koncertu v 19:00",
+    description: "Vstupné 850,- včetně lístku na lanovkou v 19:00 z Ramzové. Rezervace na info@chatanaseraku.cz. Začátek koncertu ve 20:00",
     heroTitle: "Laco Déczi & New York Celula",
-    time: "19:00",
-    price: "850 Kč",
+    time: "20:00",
+    price: "850 Kč včetně lístku na lanovkou v 19:00 z Ramzové,
   },
   {
     date: "2026-10-24",
