@@ -61,18 +61,6 @@ export default function HeroEventTickets({
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className={styles.head}>
-        <p className={styles.label}>Co se chystá na chatě</p>
-        {n > 1 && (
-          <div className={styles.controls}>
-            <button type="button" className={styles.btn} onClick={() => go(-1)} aria-label="Předchozí akce">←</button>
-            <span className={styles.count} aria-live="polite">
-              {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
-            </span>
-            <button type="button" className={styles.btn} onClick={() => go(1)} aria-label="Další akce">→</button>
-          </div>
-        )}
-      </div>
 
       <div className={styles.stack} aria-roledescription="carousel" aria-label="Nejbližší akce">
         {upcoming.map((e, i) => {
@@ -118,7 +106,12 @@ export default function HeroEventTickets({
           );
         })}
       </div>
+        })}
+      </div>
 
+      <div className={styles.head}>
+        …the block you cut…
+      </div>
     </div>
   );
 }
