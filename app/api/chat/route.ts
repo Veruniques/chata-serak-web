@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SYSTEM_PROMPT } from "@/lib/knowledgeBase";
+import { pragueNow } from "@/lib/openingHours";
 
 /**
  * Server route — API klíč zůstává jen na serveru, nikdy nejde do prohlížeče.
@@ -26,6 +27,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Chybí zpráva." }, { status: 400 });
   }
 
+  const now = pragueNow();
+
   try {
     const res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -37,7 +40,8 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         model: "claude-haiku-4-5-20251001",
         max_tokens: 500,
-        system: SYSTEM_PROMPT,
+        // Bez dnešního data by bot neuměl odpovědět na „máte dnes otevřeno?".
+        system: `${SYSTEM_PROMPT}\n\nDNEŠNÍ DATUM A ČAS NA CHATĚ: ${now.date} ${now.time}`,
         messages,
       }),
     });

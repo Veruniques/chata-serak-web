@@ -348,7 +348,13 @@ export default function Home() {
                 ))}
               </ul>
               <p className="mt-4 text-base text-[var(--mist-100)]">
-                Otevřeno denně od 10:00 (polévky), hlavní jídla od 11:00.
+                Polévky od 10:00, hlavní jídla od 11:00.{" "}
+                <Link
+                  href="/restaurace#oteviraci-doba"
+                  className="underline underline-offset-4 hover:text-[var(--amber-300)]"
+                >
+                  Otevírací doba a zavírací dny
+                </Link>
               </p>
               <p className="mt-1 text-sm text-[var(--granite-300)]">
                 Vaříme i lehčí sezónní menu — ptejte se přímo v restauraci.

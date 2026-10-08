@@ -2,6 +2,12 @@ import { notFound } from "next/navigation";
 import { getPageBySlug, getAllPages } from "@/lib/wp";
 import { FALLBACK_PAGES } from "@/lib/fallbackContent";
 import Reveal from "@/components/Reveal";
+import OpeningHours from "@/components/OpeningHours";
+import { openingHoursJsonLd, pragueNow } from "@/lib/openingHours";
+
+// Kalendář otevírací doby ukazuje aktuální měsíc — stránku proto necháme
+// každou hodinu přegenerovat, i když se obsah ve WordPressu nezmění.
+export const revalidate = 3600;
 
 /**
  * Univerzální šablona pro obsahové stránky z WordPressu (O chatě,
@@ -54,6 +60,9 @@ export default async function ContentPage({
     html = fallback.html;
   }
 
+  // Restaurace má navíc sekci s otevírací dobou (data v lib/openingHours.ts).
+  const now = slug === "restaurace" ? pragueNow() : null;
+
   return (
     <article>
       <header className="bg-[var(--mist-100)] px-6 pt-36 pb-16">
@@ -72,6 +81,18 @@ export default async function ContentPage({
           alt={featured.alt_text ?? ""}
           className="w-full max-h-[480px] object-cover"
         />
+      )}
+
+      {now && (
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(openingHoursJsonLd(now.date)).replace(/</g, "\\u003c"),
+            }}
+          />
+          <OpeningHours initialDate={now.date} initialTime={now.time} />
+        </>
       )}
 
       <div className="max-w-3xl mx-auto px-6 py-16">
