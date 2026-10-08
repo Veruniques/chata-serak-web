@@ -41,7 +41,7 @@ export const EVENTS: ChataEvent[] = [
     date: "2026-10-24",
     title: "Dina Štěrbová - přednáška",
     type: "Přednáška",
-    description: "Sobotní přednáška o horolezení a 8000m.n.m..",
+    description: "Vstupné 100,-. Sobotní přednáška o horolezení a 8000m.n.m..",
     heroTitle: "Dina Štěrbová",
     heroNote: "Horolezení a osmitisícovky",
     price: "vstupné 100 Kč",
