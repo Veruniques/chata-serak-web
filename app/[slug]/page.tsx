@@ -66,7 +66,7 @@ export default async function ContentPage({
   return (
     <article>
       <header className="bg-[var(--mist-100)] px-6 pt-36 pb-16">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <h1
             className="font-display text-5xl md:text-6xl text-[var(--spruce-950)]"
             dangerouslySetInnerHTML={{ __html: title ?? "" }}
@@ -95,7 +95,7 @@ export default async function ContentPage({
         </>
       )}
 
-      <div className="max-w-3xl mx-auto px-6 py-16">
+      <div className="max-w-5xl mx-auto px-6 py-16">
         <Reveal>
           <div
             className="wp-content"
