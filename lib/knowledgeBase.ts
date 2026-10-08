@@ -2,7 +2,11 @@
  * Znalostní báze pro AI chat widget. Udržujte ji v souladu se skutečností —
  * cokoliv sem napíšete, bot bude prezentovat jako fakt. Když se něco změní
  * (ceny, storno podmínky, otevírací doba), upravte to tady.
+ *
+ * Otevírací doba restaurace se sem doplňuje sama z lib/openingHours.ts.
  */
+import { openingHoursText } from "@/lib/openingHours";
+
 export const KNOWLEDGE_BASE = `
 CHATA NA ŠERÁKU — základní fakta
 - Historická horská chata z roku 1888, na vrcholu Šeráku (1351 m n. m.) v Hrubém Jeseníku, Ramzová, 788 26 Branná.
@@ -32,7 +36,8 @@ STORNO PODMÍNKY
 - Zrušení pobytu z naší strany (provozní/bezpečnostní důvody): vrácení celé částky.
 
 RESTAURACE
-- Otevřeno denně, polévky od 10:00, hlavní jídla od 11:00.
+${openingHoursText()}
+- Polévky od 10:00, hlavní jídla od 11:00.
 - Tankové pivo Šerák — pivovar Holba pro nás vypravil speciální terénní vůz, pivní trubky se pravidelně čistí, personál je proškolený pivovarem na čepování.
 - Vybraná jídla: Šerácký rendlík 110 Kč, Hovězí guláš s karlovarským knedlíkem 339 Kč, Svíčková na smetaně 349 Kč, Borůvkové knedlíky 249 Kč. Vaříme i lehčí sezónní menu.
 
