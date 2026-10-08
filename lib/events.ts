@@ -38,14 +38,6 @@ export const EVENTS: ChataEvent[] = [
     price: "850 Kč včetně lístku na lanovku v 19:00 z Ramzové",
   },
   {
-    date: "2026-10-24",
-    title: "Dina Štěrbová - přednáška",
-    type: "Přednáška",
-    description: "Pro operaci Diny, přesunuta na nový termín",
-    heroTitle: "Dina Štěrbová",
-    heroNote: "Horolezení a osmitisícovky",
-  },
-  {
     date: "2026-11-06",
     title: "Los Muertos — dušičková párty",
     type: "Párty",
