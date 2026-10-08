@@ -44,6 +44,7 @@ export const EVENTS: ChataEvent[] = [
     description: "Sobotní přednáška o horolezení a 8000m.n.m..",
     heroTitle: "Dina Štěrbová",
     heroNote: "Horolezení a osmitisícovky",
+    price: "vstupné 100 Kč",
   },
   {
     date: "2026-11-06",
@@ -52,7 +53,7 @@ export const EVENTS: ChataEvent[] = [
     description: "Vstupné 300,-. Oslavte letos Dušičky v mexickém stylu – hoďte se do tematického kostýmu, přijďte si užít noc plnou živých barev a hudby od DJ a přeneste s námi fotku svých blízkých k symbolickému pomníčku",
     heroTitle: "Los Muertos",
     heroNote: "Dušičková párty",
-    price: "300 Kč",
+    price: "vstupné 300 Kč",
   },
   {
     date: "2026-11-16",
@@ -61,6 +62,6 @@ export const EVENTS: ChataEvent[] = [
     description: "Vstupné 100,-. Filmový večer s adrenalinovou atmosférou z horského prostředí.",
     heroTitle: "Snow Film Fest",
     heroNote: "Horské filmy",
-    price: "100 Kč",
+    price: "vstupné 100 Kč",
   },
 ];
