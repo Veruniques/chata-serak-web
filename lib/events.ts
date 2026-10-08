@@ -14,22 +14,6 @@ export type ChataEvent = {
 
 export const EVENTS: ChataEvent[] = [
   {
-    date: "2026-09-11",
-    title: "Přednáška Lukáše Abta",
-    type: "Přednáška",
-    description: "Večerní přednáška.",
-    heroTitle: "Lukáš Abt",
-    heroNote: "Večerní přednáška",
-  },
-  {
-    date: "2026-09-12",
-    title: "Stezky z lásky — dobrovolnická akce, oprava Koňské stezky",
-    type: "Dobrovolnická akce",
-    description: "Pomozte nám s opravou Koňské stezky.",
-    heroTitle: "Stezky z lásky",
-    heroNote: "Oprava Koňské stezky",
-  },
-  {
     date: "2026-09-19",
     title: "Zabijačkový víkend",
     type: "Gastro víkend",
@@ -65,16 +49,18 @@ export const EVENTS: ChataEvent[] = [
     date: "2026-11-06",
     title: "Los Muertos — dušičková párty",
     type: "Párty",
-    description: "Sobotní tematická párty.",
+    description: "Vstupné 300,-. Oslavte letos Dušičky v mexickém stylu – hoďte se do tematického kostýmu, přijďte si užít noc plnou živých barev a hudby od DJ a přeneste s námi fotku svých blízkých k symbolickému pomníčku",
     heroTitle: "Los Muertos",
     heroNote: "Dušičková párty",
+    price: "300 Kč",
   },
   {
     date: "2026-11-16",
     title: "Snow film festival - promítání",
     type: "Promítání",
-    description: "Filmový večer s horskou tematikou.",
+    description: "Vstupné 100,-. Filmový večer s adrenalinovou atmosférou z horského prostředí.",
     heroTitle: "Snow Film Fest",
     heroNote: "Horské filmy",
+    price: "100 Kč",
   },
 ];
