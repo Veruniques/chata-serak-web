@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SYSTEM_PROMPT } from "@/lib/knowledgeBase";
 import { pragueNow } from "@/lib/openingHours";
+import { clientIp, rateLimit } from "@/lib/rateLimit";
+
+// Chat platíme za každou zprávu. Bez limitů by šel cizí skript použít jako
+// bezplatný přístup k našemu API klíči.
+const MAX_MESSAGES = 20;
+const MAX_MESSAGE_CHARS = 1500;
 
 /**
  * Server route — API klíč zůstává jen na serveru, nikdy nejde do prohlížeče.
@@ -21,9 +27,42 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { messages } = await req.json();
+  // 20 zpráv za 10 minut z jedné adresy.
+  if (!rateLimit(`chat:${clientIp(req)}`, 20, 10 * 60_000)) {
+    return NextResponse.json(
+      {
+        reply:
+          "To je na chvíli hodně zpráv. Zkuste to prosím za pár minut, nebo napište na info@chatanaseraku.cz.",
+      },
+      { status: 429 }
+    );
+  }
 
-  if (!Array.isArray(messages) || messages.length === 0) {
+  const body = await req.json().catch(() => null);
+  const raw: unknown = body?.messages;
+
+  if (!Array.isArray(raw) || raw.length === 0) {
+    return NextResponse.json({ error: "Chybí zpráva." }, { status: 400 });
+  }
+
+  // Bereme jen poslední část konverzace, jen role user/assistant a jen text
+  // rozumné délky. Cokoli jiného (systémové instrukce, obrázky) zahodíme.
+  const messages = raw
+    .slice(-MAX_MESSAGES)
+    .filter(
+      (m): m is { role: "user" | "assistant"; content: string } =>
+        !!m &&
+        typeof m === "object" &&
+        (m.role === "user" || m.role === "assistant") &&
+        typeof m.content === "string" &&
+        m.content.trim().length > 0
+    )
+    .map((m) => ({ role: m.role, content: m.content.slice(0, MAX_MESSAGE_CHARS) }));
+
+  // API vyžaduje, aby konverzace začínala i končila zprávou uživatele.
+  while (messages.length && messages[0].role !== "user") messages.shift();
+
+  if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
     return NextResponse.json({ error: "Chybí zpráva." }, { status: 400 });
   }
 
