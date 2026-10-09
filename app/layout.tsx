@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import GrantBanner from "@/components/GrantBanner";
 import ChatWidget from "@/components/ChatWidget";
+import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
   title: "Chata na Šeráku — ubytování a restaurace na vrcholu Jeseníků",
@@ -24,6 +25,7 @@ export default function RootLayout({
         <GrantBanner />
         <Footer />
         <ChatWidget />
+        <Analytics />
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieSettingsButton } from "@/components/Analytics";
 
 const FOOTER_LINKS = [
   { href: "/rezervace", label: "Rezervace" },
@@ -73,6 +74,7 @@ export default function Footer() {
 
         <p className="mt-12 pt-6 border-t border-white/10 text-xs text-[var(--granite-300)] flex flex-wrap justify-between gap-2">
           <span>© {new Date().getFullYear()} Chata Jiřího na Šeráku</span>
+          <CookieSettingsButton />
           <span className="font-mono-label">1351 m n. m.</span>
         </p>
       </div>
