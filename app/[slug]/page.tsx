@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getPageBySlug, getAllPages } from "@/lib/wp";
 import { FALLBACK_PAGES } from "@/lib/fallbackContent";
 import Reveal from "@/components/Reveal";
+import { sanitizeContent, sanitizeTitle } from "@/lib/sanitize";
 import OpeningHours from "@/components/OpeningHours";
 import { openingHoursJsonLd, pragueNow } from "@/lib/openingHours";
 
@@ -45,8 +46,9 @@ export default async function ContentPage({
   try {
     const page = await getPageBySlug(slug);
     if (page) {
-      title = page.title.rendered;
-      html = page.content.rendered;
+      // Obsah z WordPressu nikdy nevkládáme bez vyčištění — viz lib/sanitize.ts.
+      title = sanitizeTitle(page.title.rendered);
+      html = sanitizeContent(page.content.rendered);
       featured = page._embedded?.["wp:featuredmedia"]?.[0];
     }
   } catch {
