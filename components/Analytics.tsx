@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 /**
  * Google Analytics 4 se souhlasem návštěvníka.
  *
- * Měřicí ID (G-XXXXXXXXXX) se bere z env proměnné NEXT_PUBLIC_GA_ID —
- * bez ní se nic nenačte ani nezobrazí. Skript Google se stáhne až po
- * kliknutí na „Souhlasím"; do té doby se neukládají žádné cookies.
+ * Lišta se zobrazuje vždy. Měřicí ID (G-XXXXXXXXXX) se bere z env
+ * proměnné NEXT_PUBLIC_GA_ID — bez ní se GA nenačte, jen se uloží volba.
+ * Skript Google se stáhne až po kliknutí na „Souhlasím"; do té doby se
+ * neukládají žádné cookies.
  * Volbu lze kdykoli změnit odkazem „Nastavení cookies" v patičce.
  */
 
@@ -28,7 +29,6 @@ function readConsent(): Consent {
 }
 
 export function CookieSettingsButton() {
-  if (!GA_ID) return null;
   return (
     <button
       type="button"
@@ -57,8 +57,6 @@ export default function Analytics() {
     return () => window.removeEventListener(OPEN_EVENT, reopen);
   }, []);
 
-  if (!GA_ID) return null;
-
   const choose = (value: "granted" | "denied") => {
     try {
       window.localStorage.setItem(STORAGE_KEY, value);
@@ -66,15 +64,17 @@ export default function Analytics() {
       // Soukromé okno bez úložiště — volba platí jen pro tuto návštěvu.
     }
     // Oficiální vypínač GA: při odmítnutí přestane měřit i už načtený skript.
-    (window as unknown as Record<string, boolean>)[`ga-disable-${GA_ID}`] =
-      value === "denied";
+    if (GA_ID) {
+      (window as unknown as Record<string, boolean>)[`ga-disable-${GA_ID}`] =
+        value === "denied";
+    }
     if (value === "granted") setEverGranted(true);
     setConsent(value);
   };
 
   return (
     <>
-      {everGranted && (
+      {GA_ID && everGranted && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
