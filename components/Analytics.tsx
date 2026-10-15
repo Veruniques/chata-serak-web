@@ -6,14 +6,15 @@ import { useEffect, useState } from "react";
 /**
  * Google Analytics 4 se souhlasem návštěvníka.
  *
- * Lišta se zobrazuje vždy. Měřicí ID (G-XXXXXXXXXX) se bere z env
- * proměnné NEXT_PUBLIC_GA_ID — bez ní se GA nenačte, jen se uloží volba.
+ * Lišta se zobrazuje vždy. Měřicí ID se bere z env proměnné
+ * NEXT_PUBLIC_GA_ID; když není nastavená, použije se ID property
+ * „Chata Serak" (účet info@chatanaseraku.cz). ID je veřejné, není tajné.
  * Skript Google se stáhne až po kliknutí na „Souhlasím"; do té doby se
  * neukládají žádné cookies.
  * Volbu lze kdykoli změnit odkazem „Nastavení cookies" v patičce.
  */
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-M9MFP7NMZR";
 const STORAGE_KEY = "serak-cookie-consent";
 const OPEN_EVENT = "serak:cookie-settings";
 
