@@ -257,8 +257,8 @@ export default function Ubytovani() {
                   </h3>
                   <p className="text-[var(--granite-600)] leading-relaxed text-sm">
                     Čtyřnozí parťáci jsou u nás vítáni. Poplatek za pejska je
-                    600 Kč za celý pobyt. Pro hosty se psy máme vyhrazené
-                    pokoje, proto nám prosím psa nahlaste už při rezervaci.
+                    600 Kč za celý pobyt. Prosíme, psa nahlaste už při
+                    rezervaci.
                   </p>
                 </div>
               </div>
