@@ -12,6 +12,7 @@ import {
   CableCar,
   Footprints,
   Bike,
+  Dog,
 } from "lucide-react";
 
 export const metadata = {
@@ -20,7 +21,10 @@ export const metadata = {
     "Rezervace, praktické informace pro hosty, galerie pokojů, sauna a jak se k nám dostat.",
 };
 
+const CENIK_PDF = "/dokumenty/cenik-ubytovani-2026.pdf";
+
 const QUICK_NAV = [
+  { href: CENIK_PDF, label: "Ceník (PDF)", external: true },
   { href: "#pokoje", label: "Pokoje & galerie" },
   { href: "#myslivna", label: "Myslivna s krbem" },
   { href: "#info", label: "Praktické informace" },
@@ -67,6 +71,9 @@ export default function Ubytovani() {
               <a
                 key={n.href}
                 href={n.href}
+                {...("external" in n && n.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className="text-sm text-[var(--amber-300)] border border-[var(--amber-300)]/40 rounded-full px-4 py-1.5 hover:bg-[var(--amber-300)] hover:text-[var(--spruce-950)] transition-colors"
               >
                 {n.label}
@@ -236,6 +243,22 @@ export default function Ubytovani() {
                     takže je jí omezené množství. Sprchy jsou na žetony —
                     jeden žeton spustí vodu na 3 minuty. Žetony si vyzvednete
                     na recepci. Prosíme o šetrné zacházení s vodou.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <div className="flex gap-4">
+                <Dog className="text-[var(--amber-500)] shrink-0 mt-1" size={24} strokeWidth={1.4} />
+                <div>
+                  <h3 className="font-display text-lg text-[var(--spruce-950)] mb-1.5">
+                    Pejsci vítáni
+                  </h3>
+                  <p className="text-[var(--granite-600)] leading-relaxed text-sm">
+                    Čtyřnozí parťáci jsou u nás vítáni. Poplatek za pejska je
+                    600 Kč za celý pobyt. Pro hosty se psy máme vyhrazené
+                    pokoje, proto nám prosím psa nahlaste už při rezervaci.
                   </p>
                 </div>
               </div>
