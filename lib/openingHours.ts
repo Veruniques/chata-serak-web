@@ -182,6 +182,37 @@ export function weeklyRows(): { label: string; hours: string }[] {
   }));
 }
 
+/**
+ * Nejbližších `days` dní od `date` (včetně) podle kalendáře — se zavřenými dny
+ * i výjimkami. Po sobě jdoucí dny se stejnou dobou se slučují: „Po – Út · zavřeno".
+ */
+export function upcomingRows(
+  date: string,
+  days = 7
+): { label: string; hours: string; from: string; to: string }[] {
+  const text = (i: DayInfo) =>
+    i.kind === "closed"
+      ? "zavřeno"
+      : `${i.open} – ${i.close}${i.kind === "limited" ? ` (${LIMITED_SHORT})` : ""}`;
+  const rows: { from: DayInfo; to: DayInfo; hours: string }[] = [];
+  for (let i = 0; i < days; i++) {
+    const info = getDayInfo(addDays(date, i));
+    const hours = text(info);
+    const last = rows[rows.length - 1];
+    if (last && last.hours === hours) last.to = info;
+    else rows.push({ from: info, to: info, hours });
+  }
+  return rows.map((r) => ({
+    label:
+      r.from.date === r.to.date
+        ? WEEKDAY_LABEL[r.from.weekday]
+        : `${WEEKDAY_LABEL[r.from.weekday]} – ${WEEKDAY_LABEL[r.to.weekday]}`,
+    hours: r.hours,
+    from: r.from.date,
+    to: r.to.date,
+  }));
+}
+
 /** Nejkratší a nejdelší běžná zavírací hodina — pro legendu kalendáře. */
 export function closingRange(): { min: string; max: string } {
   const closes = Object.values(WEEKLY_HOURS)

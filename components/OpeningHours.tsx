@@ -14,6 +14,7 @@ import {
   pragueNow,
   shortDate,
   shortTime,
+  upcomingRows,
   weeklyRows,
   ymd,
   type DayInfo,
@@ -249,10 +250,15 @@ export default function OpeningHours({
               <p className="mt-3 text-sm text-[var(--granite-300)]">{status.sub}</p>
             )}
           </div>
-          <dl className="divide-y divide-[var(--spruce-700)]">
-            {weeklyRows().map((row) => (
+          <div>
+          <p className="font-mono-label text-xs uppercase tracking-wider text-[var(--granite-300)]">
+            Nejbližších 7 dní · {shortDate(now.date).split(" ").slice(1).join(" ")} –{" "}
+            {shortDate(addDays(now.date, 6)).split(" ").slice(1).join(" ")}
+          </p>
+          <dl className="mt-2 divide-y divide-[var(--spruce-700)]">
+            {upcomingRows(now.date).map((row) => (
               <div
-                key={row.label}
+                key={row.from}
                 className="font-display flex items-baseline justify-between gap-4 py-3 text-xl md:text-2xl"
               >
                 <dt>{row.label}</dt>
@@ -260,6 +266,7 @@ export default function OpeningHours({
               </div>
             ))}
           </dl>
+          </div>
         </div>
       </div>
 
@@ -323,7 +330,11 @@ export default function OpeningHours({
           </div>
 
           <p className="mt-8 max-w-2xl text-base text-[var(--spruce-800)]">
-            Ve všechny ostatní dny máme otevřeno podle běžné otevírací doby. {GUEST_NOTE}
+            Běžná otevírací doba (pokud v kalendáři není jinak):{" "}
+            {weeklyRows()
+              .map((r) => `${r.label} ${r.hours}`)
+              .join(", ")}
+            . {GUEST_NOTE}
           </p>
         </div>
       </div>
