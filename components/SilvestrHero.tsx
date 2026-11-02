@@ -35,14 +35,15 @@ export default function SilvestrHero() {
         src="/images/silvestr-hero.jpg"
         alt=""
         fetchPriority="high"
-        className="silvestr-kenburns absolute inset-0 -z-20 h-full w-full object-cover object-[70%_50%]"
+        className="silvestr-kenburns absolute inset-0 -z-20 h-full w-full object-cover object-[38%_50%] md:object-center"
       />
-      {/* Čitelnost textu: zleva a zespodu do tmy */}
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,#070b10_0%,rgba(7,11,16,0.82)_32%,rgba(7,11,16,0.25)_62%,rgba(7,11,16,0)_80%)]" />
+      {/* Čitelnost textu: zprava (chata je vlevo) a zespodu do tmy */}
+      <div className="absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(270deg,rgba(7,11,16,0.85)_0%,rgba(7,11,16,0.6)_30%,rgba(7,11,16,0)_58%)]" />
       <div className="absolute inset-0 -z-10 bg-[#070b10]/45 md:hidden" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-[#070b10] via-[#070b10]/60 to-transparent" />
 
       <div className="mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-10 pt-32 md:pb-14">
+        <div className="md:ml-auto md:max-w-[36rem]">
         <HeroStagger>
           <HeroItem>
             <p className="font-mono-label flex items-center gap-3 text-[11px] tracking-[0.22em] text-[var(--amber-300)]">
@@ -55,7 +56,7 @@ export default function SilvestrHero() {
           <HeroItem>
             <h1
               id="silvestr-title"
-              className="font-display mt-6 max-w-3xl text-5xl font-extrabold leading-[0.95] tracking-[-0.025em] sm:text-6xl lg:text-[5.5rem] [text-wrap:balance]"
+              className="font-display mt-6 max-w-3xl text-5xl font-extrabold leading-[0.95] tracking-[-0.025em] sm:text-6xl lg:text-[4.75rem] [text-wrap:balance]"
             >
               Ohňostroje necháme údolí.
             </h1>
@@ -78,10 +79,11 @@ export default function SilvestrHero() {
             </p>
           </HeroItem>
         </HeroStagger>
+        </div>
 
         {/* Fakta + program večera */}
         <div className="mt-12 grid gap-8 border-t border-white/15 pt-7 md:mt-16 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-4">
+          <dl className="grid min-w-0 grid-cols-2 gap-x-6 gap-y-4">
             {FACTS.map((f) => (
               <div key={f.k}>
                 <dt className="font-mono-label text-[10px] tracking-[0.18em] text-[var(--granite-300)] uppercase">
@@ -92,7 +94,7 @@ export default function SilvestrHero() {
             ))}
           </dl>
 
-          <div>
+          <div className="min-w-0">
             <p className="font-mono-label text-[10px] tracking-[0.18em] text-[var(--granite-300)] uppercase">
               31. 12. na Šeráku
             </p>
