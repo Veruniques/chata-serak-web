@@ -9,6 +9,8 @@ import { HeroStagger, HeroItem } from "@/components/HeroStagger";
 import Marquee from "@/components/Marquee";
 import TrailPath from "@/components/TrailPath";
 import HeroEventTickets from "@/components/HeroEventTickets";
+import SilvestrHero, { SILVESTR_UNTIL } from "@/components/SilvestrHero";
+import { pragueNow } from "@/lib/openingHours";
 import {
   BedDouble,
   UtensilsCrossed,
@@ -89,10 +91,18 @@ const MENU_HIGHLIGHTS = [
   { name: "Borůvkové knedlíky", note: "2 ks, domácí", price: "249 Kč" },
 ];
 
+// Stránka se přegeneruje každou hodinu — silvestrovské hero tak po SILVESTR_UNTIL
+// samo zmizí a vrátí se 360° hero.
+export const revalidate = 3600;
+
 export default function Home() {
+  const showSilvestr = pragueNow().date <= SILVESTR_UNTIL;
   return (
     <>
-      {/* ===== HERO — 360° panorama (60 %) + obsah (40 %) ===== */}
+      {showSilvestr ? (
+        <SilvestrHero />
+      ) : (
+      /* ===== HERO — 360° panorama (60 %) + obsah (40 %) ===== */
       <section className="relative md:h-screen md:min-h-[720px] bg-[var(--spruce-950)] flex flex-col overflow-hidden">
         {/* 360° video pás */}
         <div className="relative h-[46vh] min-h-[300px] md:h-[60%] md:min-h-0 overflow-hidden cursor-grab active:cursor-grabbing">
@@ -198,6 +208,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      )}
 
       <Marquee
         items={[

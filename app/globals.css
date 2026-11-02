@@ -330,3 +330,15 @@ h1, h2, h3, .font-display {
   font-size: 0.8rem;
   color: var(--granite-600);
 }
+
+/* Silvestrovské hero — pomalý „Ken Burns" nájezd na fotku */
+@keyframes silvestr-kenburns {
+  from { transform: scale(1.06) translate3d(1%, 0, 0); }
+  to   { transform: scale(1) translate3d(0, 0, 0); }
+}
+.silvestr-kenburns {
+  animation: silvestr-kenburns 18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .silvestr-kenburns { animation: none; }
+}
