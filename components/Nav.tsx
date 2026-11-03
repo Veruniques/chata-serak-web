@@ -49,12 +49,12 @@ export default function Nav() {
           ))}
         </ul>
 
-        <Link
-          href="/rezervace"
-          className="hidden lg:inline-flex btn btn-primary btn-sm"
-        >
-          Rezervovat pobyt
-        </Link>
+        {/* Obal řeší skrytí: vlastní .btn (display: inline-flex) by Tailwindí `hidden` přebil */}
+        <div className="hidden lg:block">
+          <Link href="/rezervace" className="btn btn-primary btn-sm">
+            Rezervovat pobyt
+          </Link>
+        </div>
 
         <button
           aria-label={open ? "Zavřít menu" : "Otevřít menu"}
