@@ -28,21 +28,26 @@ export default function SilvestrHero() {
   return (
     <section
       aria-labelledby="silvestr-title"
-      className="relative isolate min-h-[100svh] md:min-h-[760px] md:h-screen overflow-hidden bg-[#070b10] text-[var(--snow-50)]"
+      className="relative isolate md:min-h-[760px] md:h-screen overflow-hidden bg-[#070b10] text-[var(--snow-50)]"
     >
-      {/* Vizuál: hřeben v noci, lampiony před chatou */}
-      <img
-        src="/images/silvestr-hero.jpg"
-        alt=""
-        fetchPriority="high"
-        className="silvestr-kenburns absolute inset-0 -z-20 h-full w-full object-cover object-[38%_50%] md:object-center"
-      />
+      {/* Vizuál: hřeben v noci, lampiony před chatou.
+          Mobil: fotka jako pás nahoře (chata celá vidět), text pod ní.
+          Desktop: fotka přes celé hero, text vpravo v obloze. */}
+      <div className="relative -z-20 h-[58vh] min-h-[340px] max-h-[520px] overflow-hidden md:absolute md:inset-0 md:h-full md:max-h-none md:min-h-0">
+        <img
+          src="/images/silvestr-hero.jpg"
+          alt=""
+          fetchPriority="high"
+          className="silvestr-kenburns h-full w-full object-cover object-[36%_62%] md:object-center"
+        />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#070b10]/70 to-transparent md:hidden" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#070b10] to-transparent md:hidden" />
+      </div>
       {/* Čitelnost textu: zprava (chata je vlevo) a zespodu do tmy */}
       <div className="absolute inset-0 -z-10 hidden md:block bg-[linear-gradient(270deg,rgba(7,11,16,0.85)_0%,rgba(7,11,16,0.6)_30%,rgba(7,11,16,0)_58%)]" />
-      <div className="absolute inset-0 -z-10 bg-[#070b10]/45 md:hidden" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-[#070b10] via-[#070b10]/60 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 hidden h-2/3 md:block bg-gradient-to-t from-[#070b10] via-[#070b10]/60 to-transparent" />
 
-      <div className="mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-10 pt-32 md:pb-14">
+      <div className="relative mx-auto -mt-16 flex max-w-6xl flex-col justify-end px-6 pb-12 md:mt-0 md:h-full md:pb-14 md:pt-32">
         <div className="md:ml-auto md:max-w-[36rem]">
         <HeroStagger>
           <HeroItem>
@@ -56,7 +61,7 @@ export default function SilvestrHero() {
           <HeroItem>
             <h1
               id="silvestr-title"
-              className="font-display mt-6 max-w-3xl text-5xl font-extrabold leading-[0.95] tracking-[-0.025em] sm:text-6xl lg:text-[4.75rem] [text-wrap:balance]"
+              className="font-display mt-6 max-w-3xl text-[2.75rem] font-extrabold leading-[0.95] min-[400px]:text-5xl tracking-[-0.025em] sm:text-6xl lg:text-[4.75rem] [text-wrap:balance]"
             >
               Ohňostroje necháme údolí.
             </h1>
